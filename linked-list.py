@@ -4,12 +4,13 @@ class ListNode:
         self.val = val
         self.key = key
         self.next = None
-        
+
 
 class LinkedList:
     def __init__(self):
         # Initialize the LinkedList with the head of the list
         self.head = None
+
 
     def insert(self, node):
         # Insert a new node at the end of the list
@@ -42,5 +43,19 @@ class LinkedList:
             current = current.next
 
 
+
+    def search(self, key):
+        # Start with the head of the list
+        current = self.head
+        # Continue searching as long as there are nodes to examine
+        while current:
+            # Check if the current node's key matches the search key
+            if current.key == key:
+            # Return the current node if a match is found
+                return current
+            # Move to the next node in the list
+            current = current.next
+        # Return None if no node with the given key is found after traversing the entire list
+        return None
 
 
