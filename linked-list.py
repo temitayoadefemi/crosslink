@@ -4,6 +4,7 @@ class ListNode:
         self.val = val
         self.key = key
         self.next = None
+        
 
 class LinkedList:
     def __init__(self):
@@ -21,6 +22,7 @@ class LinkedList:
             while current.next:
                 current = current.next
             current.next = node
+
 
     def delete(self, key):
         # Delete a node by its key
