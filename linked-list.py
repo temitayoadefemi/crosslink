@@ -74,3 +74,18 @@ class LinkedList:
             previous = current  # Move the previous pointer to the current node
             current = current.next  # Move to the next node in the list
 
+
+
+    def edit(self, key, value):
+        # Start at the head of the list
+        current = self.head
+        # Iterate through the linked list
+        while current:
+            # Check if the current node's key matches the key we're looking for
+            if current.key == key:
+                # Update the value of the node if the key is found
+                current.value = value
+                # Exit the function since we've made the necessary update
+                return
+            # Move to the next node in the list
+            current = current.next
