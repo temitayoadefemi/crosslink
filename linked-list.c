@@ -23,7 +23,7 @@ void insert(ListNode *node, LinkedList *linkedlist) {
 }
 
 // Function to delete a node from the linked list by key
-void delete(ListNode *node, int key, LinkedList *linkedlist) {
+void delete(int key, LinkedList *linkedlist) {
     // Check if the linked list is empty
     if (linkedlist->head == NULL) {
         return;  // If the list is empty, there is nothing to delete
@@ -53,3 +53,6 @@ void delete(ListNode *node, int key, LinkedList *linkedlist) {
 
     free(current);  // Free the memory of the deleted node
 }
+
+
+
