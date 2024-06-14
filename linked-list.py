@@ -12,6 +12,7 @@ class LinkedList:
         self.head = None
 
 
+
     def insert(self, node):
         # Insert a new node at the end of the list
         if not self.head:

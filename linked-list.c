@@ -73,3 +73,50 @@ ListNode* search(int key, LinkedList *linkedlist) {
     // If no node with the key is found, return NULL
     return NULL;
 }
+
+
+void replace(int key, ListNode *node, LinkedList *linkedlist) {
+    ListNode *current = linkedlist->head;
+    ListNode *previous = NULL;
+
+    // Traverse the list until the node with the specified key is found or the list ends
+    while (current != NULL && current->key != key) {
+        previous = current;
+        current = current->next;
+    }
+
+    // If the node with the specified key was not found, return
+    if (current == NULL) return;
+
+    // If the node to replace is the head
+    if (previous == NULL) {
+        linkedlist->head = node;  // Set the new node as the head
+    } else {
+        previous->next = node;  // Link the previous node to the new node
+    }
+
+    // Link the new node to the successor of the current node
+    node->next = current->next;
+
+    // Free the memory of the replaced node
+    free(current);
+}
+
+
+void edit(int key, int value, LinkedList *linkedlist) {
+    // Start from the head of the list
+    ListNode *current = linkedlist->head;
+
+    // Traverse the list until the end
+    while (current != NULL) {
+        // Check if the current node's key matches the search key
+        if (current->key == key) {
+            // If a match is found, update the node's value and return
+            current->value = value;
+            return;  // Exit the function after updating the value
+        }
+        // Move to the next node in the list
+        current = current->next;
+    }
+
+}
