@@ -55,4 +55,21 @@ void delete(int key, LinkedList *linkedlist) {
 }
 
 
+ListNode* search(int key, LinkedList *linkedlist) {
+    // Start from the head of the list
+    ListNode *current = linkedlist->head;
 
+    // Traverse the list until the end
+    while (current != NULL) {
+        // Check if the current node's key matches the search key
+        if (current->key == key) {
+            // If a match is found, return a pointer to the node
+            return current;
+        }
+        // Move to the next node in the list
+        current = current->next;
+    }
+
+    // If no node with the key is found, return NULL
+    return NULL;
+}
