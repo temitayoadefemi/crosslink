@@ -1,2 +1,2 @@
 # linked-list
- a simple implementation of a linked list in python and c
+ a library for managing and manipulating linked lists in Python and C
