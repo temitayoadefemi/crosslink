@@ -109,3 +109,30 @@ class LinkedList:
         
         # Set the head to the previous node, which is now the last node processed.
         self.head = prev
+
+
+    def split(self, index):
+        # Initialize count to track the current position in the list
+        count = 0
+        # 'current' starts at the head of the list
+        current = self.head
+        # 'prev' will hold the last node of the first part of the split list
+        prev = None
+
+        # Traverse the list until 'current' is None or the index is reached
+        while current and count < index:
+            prev = current  # Update 'prev' to the current node before moving 'current' forward
+            current = current.next  # Move to the next node
+            count += 1  # Increment the count to track the index
+
+        # Disconnect the first part of the list from the second part
+        if prev:
+            prev.next = None  # Set 'prev.next' to None to end the first sublist
+
+        # Return a list containing the heads of the two sublists
+        # The first sublist starts from the original head and ends at 'prev'
+        # The second sublist starts from 'current' which is the node at the 'index'
+        return [self.head, current]
+
+
+    
