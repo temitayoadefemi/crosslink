@@ -91,11 +91,21 @@ class LinkedList:
 
 
     def reverse(self):
+        # Initialize the current node to the head of the list.
         current = self.head
+        # Initialize the previous node to None.
         prev = None
+    
+        # Iterate through the list until the current node is None.
         while current:
+            # Save the next node temporarily.
             next_node = current.next
+            # Reverse the current node's pointer.
             current.next = prev
+            # Move the previous node to the current node.
             prev = current
+            # Move the current node to the next node.
             current = next_node
+        
+        # Set the head to the previous node, which is now the last node processed.
         self.head = prev
