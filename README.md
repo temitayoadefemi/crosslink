@@ -1,2 +1,2 @@
-# linked-list
- a library for managing and manipulating linked lists in Python and C
+# crosslink
+a library for managing and utilising linked lists in python and c
