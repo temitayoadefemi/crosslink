@@ -120,3 +120,19 @@ void edit(int key, int value, LinkedList *linkedlist) {
     }
 
 }
+
+void reverse(LinkedList *linkedlist) {
+
+    ListNode *current = linkedlist->head;
+    ListNode *previous = NULL;
+
+    while (current != NULL) {
+
+        ListNode *nextnode = current->next;
+        current->next = previous;
+        previous = current;
+        current = nextnode;
+    }
+
+    linkedlist->head = previous;
+}
