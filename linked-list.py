@@ -11,8 +11,6 @@ class LinkedList:
         # Initialize the LinkedList with the head of the list
         self.head = None
 
-
-
     def insert(self, node):
         # Insert a new node at the end of the list
         if not self.head:
@@ -90,3 +88,14 @@ class LinkedList:
                 return
             # Move to the next node in the list
             current = current.next
+
+
+    def reverse(self):
+        current = self.head
+        prev = None
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        self.head = prev
