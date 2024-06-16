@@ -135,4 +135,17 @@ class LinkedList:
         return [self.head, current]
 
 
-    
+    def get_middle(self):
+        # Initialize two pointers, slow and fast, at the head of the list
+        slow = self.head
+        fast = self.head
+
+        # Continue looping until fast reaches the end of the list
+        while fast is not None and fast.next is not None:
+            # Move fast by two steps
+            fast = fast.next.next
+            # Move slow by one step
+            slow = slow.next
+
+        # When fast reaches the end, slow will be at the middle
+        return slow

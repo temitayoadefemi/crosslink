@@ -140,40 +140,33 @@ void reverse(LinkedList *linkedlist) {
 
 
 
-TA
-im creating a library to manage and manipute linked lists in c and python "add comments "#include <stdio.h> // Standard input/output library (for printf, etc.)
-#include <stdlib.h> // Standard library (for malloc, free, etc.)
-#include <linked-list-struct.h>
-
 // Function to insert a new node into the linked list
 void insert(ListNode *node, LinkedList *linkedlist) {
 // Check if the linked list is empty
-if (linkedlist->head == NULL) {
-// Set the new node as the head of the list
-linkedlist->head = node;
-node->next = NULL; // Set the next pointer of the new node to NULL
-}
-else {
-// Traverse to the end of the list to find the last node
-ListNode *current = linkedlist->head;
-while (current->next != NULL) {
-current = current->next;
-}
-// Append the new node at the end of the list
-current->next = node;
-node->next = NULL; // Set the next pointer of the new node to NULL
-}
-}
+    if (linkedlist->head == NULL) {
+    // Set the new node as the head of the list
+        linkedlist->head = node;
+        node->next = NULL; // Set the next pointer of the new node to NULL
+    }
+    else {
+    // Traverse to the end of the list to find the last node
+    ListNode *current = linkedlist->head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    // Append the new node at the end of the list
+    current->next = node;
+    node->next = NULL; // Set the next pointer of the new node to NULL
+    }
+    }
 
 // Function to delete a node from the linked list by key
 void delete(int key, LinkedList *linkedlist) {
 // Check if the linked list is empty
-if (linkedlist->head == NULL) {
-return; // If the list is empty, there is nothing to delete
-}
+    if (linkedlist->head == NULL) {
+        return; // If the list is empty, there is nothing to delete
+    }
 
-rust
-Copy code
 ListNode *current = linkedlist->head;
 ListNode *previous = NULL;
 
@@ -203,8 +196,6 @@ ListNode* search(int key, LinkedList *linkedlist) {
 // Start from the head of the list
 ListNode *current = linkedlist->head;
 
-vbnet
-Copy code
 // Traverse the list until the end
 while (current != NULL) {
     // Check if the current node's key matches the search key
@@ -221,42 +212,40 @@ return NULL;
 }
 
 void replace(int key, ListNode *node, LinkedList *linkedlist) {
-ListNode *current = linkedlist->head;
-ListNode *previous = NULL;
+    ListNode *current = linkedlist->head;
+    ListNode *previous = NULL;
 
-rust
-Copy code
-// Traverse the list until the node with the specified key is found or the list ends
-while (current != NULL && current->key != key) {
+
+    // Traverse the list until the node with the specified key is found or the list ends
+    while (current != NULL && current->key != key) {
     previous = current;
     current = current->next;
-}
+    }
 
-// If the node with the specified key was not found, return
-if (current == NULL) return;
+    // If the node with the specified key was not found, return
+    if (current == NULL) return;
 
-// If the node to replace is the head
-if (previous == NULL) {
-    linkedlist->head = node;  // Set the new node as the head
-} else {
-    previous->next = node;  // Link the previous node to the new node
-}
+    // If the node to replace is the head
+    if (previous == NULL) {
+        linkedlist->head = node;  // Set the new node as the head
+    } else {
+        previous->next = node;  // Link the previous node to the new node
+    }   
 
-// Link the new node to the successor of the current node
-node->next = current->next;
+    // Link the new node to the successor of the current node
+    node->next = current->next;
 
 // Free the memory of the replaced node
-free(current);
-}
+    free(current);
+    }
 
 void edit(int key, int value, LinkedList *linkedlist) {
 // Start from the head of the list
-ListNode *current = linkedlist->head;
+    ListNode *current = linkedlist->head;
 
-rust
-Copy code
+
 // Traverse the list until the end
-while (current != NULL) {
+    while (current != NULL) {
     // Check if the current node's key matches the search key
     if (current->key == key) {
         // If a match is found, update the node's value and return
@@ -265,7 +254,7 @@ while (current != NULL) {
     }
     // Move to the next node in the list
     current = current->next;
-}
+    }
 }
 
 // Function to reverse a linked list
