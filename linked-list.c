@@ -311,3 +311,20 @@ void split(LinkedList *linkedlist, int index, ListNode **head1, ListNode **head2
         *head1 = NULL;
     }
 }
+// Function to find and return the middle node of a linked list
+ListNode* get_middle(LinkedList *linkedlist) {
+    // Initialize 'slow' and 'fast' pointers to the head of the linked list
+    ListNode *slow = linkedlist->head;
+    ListNode *fast = linkedlist->head;
+
+    // Loop as long as 'fast' and 'fast->next' are not null
+    while (fast != NULL && fast->next != NULL) {
+        // Move 'slow' one step forward
+        slow = slow->next;
+        // Move 'fast' two steps forward
+        fast = fast->next->next;
+    }
+
+    // When 'fast' reaches the end of the list, 'slow' will be at the middle
+    return slow;
+}
