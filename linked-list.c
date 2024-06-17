@@ -53,6 +53,7 @@ void delete(int key, LinkedList *linkedlist) {
     free(current);  // Free the memory of the deleted node
 }
 
+// Function to find and return the middle node of a linked list
 ListNode* search(int key, LinkedList *linkedlist) {
     // Start from the head of the list
     ListNode *current = linkedlist->head;
@@ -72,6 +73,7 @@ ListNode* search(int key, LinkedList *linkedlist) {
     return NULL;
 }
 
+// Function to replace a node of a linked list
 void replace(int key, ListNode *node, LinkedList *linkedlist) {
     ListNode *current = linkedlist->head;
     ListNode *previous = NULL;
@@ -99,6 +101,8 @@ void replace(int key, ListNode *node, LinkedList *linkedlist) {
     free(current);
 }
 
+
+// Function to edit a node of a linked list
 void edit(int key, int value, LinkedList *linkedlist) {
     // Start from the head of the list
     ListNode *current = linkedlist->head;
@@ -116,6 +120,7 @@ void edit(int key, int value, LinkedList *linkedlist) {
     }
 }
 
+// Function to reverse a linked list
 void reverse(LinkedList *linkedlist) {
     // Initialize 'current' to start at the head of the list
     ListNode *current = linkedlist->head;
@@ -136,8 +141,6 @@ void reverse(LinkedList *linkedlist) {
     // Set the new head of the list to 'previous', which is the old tail
     linkedlist->head = previous;
 }
-
-
 
 
 // Function to insert a new node into the linked list
@@ -192,14 +195,15 @@ previous->next = current->next;  // Adjust the next pointer of the previous node
 free(current);  // Free the memory of the deleted node
 }
 
+// Function to search a node in a linked list
 ListNode* search(int key, LinkedList *linkedlist) {
-// Start from the head of the list
-ListNode *current = linkedlist->head;
+    // Start from the head of the list
+    ListNode *current = linkedlist->head;
 
-// Traverse the list until the end
-while (current != NULL) {
+    // Traverse the list until the end
+    while (current != NULL) {
     // Check if the current node's key matches the search key
-    if (current->key == key) {
+        if (current->key == key) {
         // If a match is found, return a pointer to the node
         return current;
     }
@@ -211,6 +215,7 @@ while (current != NULL) {
 return NULL;
 }
 
+// Function to replace a node in a linked list
 void replace(int key, ListNode *node, LinkedList *linkedlist) {
     ListNode *current = linkedlist->head;
     ListNode *previous = NULL;
@@ -239,6 +244,7 @@ void replace(int key, ListNode *node, LinkedList *linkedlist) {
     free(current);
     }
 
+// Function to edit the node of a linked list
 void edit(int key, int value, LinkedList *linkedlist) {
 // Start from the head of the list
     ListNode *current = linkedlist->head;
@@ -311,6 +317,7 @@ void split(LinkedList *linkedlist, int index, ListNode **head1, ListNode **head2
         *head1 = NULL;
     }
 }
+
 // Function to find and return the middle node of a linked list
 ListNode* get_middle(LinkedList *linkedlist) {
     // Initialize 'slow' and 'fast' pointers to the head of the linked list
@@ -328,3 +335,67 @@ ListNode* get_middle(LinkedList *linkedlist) {
     // When 'fast' reaches the end of the list, 'slow' will be at the middle
     return slow;
 }
+
+
+// Function to merge a linked list
+ListNode* merge(ListNode *a, ListNode *b) {
+    // Initialize the result to NULL
+    ListNode *result = NULL;
+
+    // If the first list is empty, return the second list
+    if (a == NULL) {
+        return b;
+    }
+
+    // If the second list is empty, return the first list
+    if (b == NULL) {
+        return a;
+    }
+
+    // Compare the head values of both lists
+    if (a->value <= b->value) {
+        // If the head of list a is smaller or equal, it should be the first node
+        result = a;
+        // Recursively sort the rest of list a and all of list b
+        result->next = merge(a->next, b);
+    } else {
+        // If the head of list b is smaller, it should be the first node
+        result = b;
+        // Recursively sort all of list a and the rest of list b
+        result->next = merge(a, b->next);
+    }
+
+    // Return the head of the merged list
+    return result;
+}
+
+
+// Function to sort a linked list
+ListNode* merge_sort(ListNode *head) {
+    // Check if the list is empty or has only one node, in which case it is already sorted
+    if (head == NULL || head->next == NULL) {
+        return head;
+    }
+
+    // Get the middle of the linked list
+    ListNode *middle = get_middle(head);
+    // 'next_to_middle' will be the start of the second half of the linked list
+    ListNode *next_to_middle = middle->next;
+
+    // Break the linked list into two halves
+    middle->next = NULL;
+
+    // Recursively sort the first half
+    ListNode *left = merge_sort(head);
+    // Recursively sort the second half
+    ListNode *right = merge_sort(next_to_middle);
+
+    // Merge the two sorted halves
+    ListNode *result = merge(left, right);
+
+    return result;
+}
+
+
+
+

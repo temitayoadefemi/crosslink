@@ -152,12 +152,14 @@ class LinkedList:
 
 
     def merge(self, a, b):
-        result = None
+        # If the first list is empty, return the second list as the result
         if not a:
             return b
+        # If the second list is empty, return the first list as the result
         if not b:
             return a  
 
+        # Choose the smaller head value as the result node and recursively merge the rest
         if a.value <= b.value:
             result = a
             result.next = self.merge(a.next, b) 
@@ -169,18 +171,20 @@ class LinkedList:
 
 
     def merge_sort(self, head):
+        # Base case: if the list is empty or has one node, it is already sorted
         if not head or not head.next:
             return head
         
+        # Find the middle of the list and split the list into two halves
         middle = self.get_middle(head)
         next_to_middle = middle.next
         middle.next = None
 
+        # Recursively sort both halves
         left = self.merge_sort(head)
         right = self.merge_sort(next_to_middle)
 
+        # Merge the two sorted halves
         sorted_list = self.merge(left, right)
         return sorted_list
-
-
         
