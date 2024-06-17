@@ -371,7 +371,7 @@ ListNode* merge(ListNode *a, ListNode *b) {
 
 
 // Function to sort a linked list
-ListNode* merge_sort(ListNode *head) {
+ListNode* sort(ListNode *head) {
     // Check if the list is empty or has only one node, in which case it is already sorted
     if (head == NULL || head->next == NULL) {
         return head;
@@ -386,9 +386,9 @@ ListNode* merge_sort(ListNode *head) {
     middle->next = NULL;
 
     // Recursively sort the first half
-    ListNode *left = merge_sort(head);
+    ListNode *left = sort(head);
     // Recursively sort the second half
-    ListNode *right = merge_sort(next_to_middle);
+    ListNode *right = sort(next_to_middle);
 
     // Merge the two sorted halves
     ListNode *result = merge(left, right);

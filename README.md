@@ -23,6 +23,7 @@ CrossLink is a versatile library designed to manage and manipulate linked lists 
 - **Reverse**: Invert the list order.
 - **Split**: Break the list into two parts based on an index.
 - **Middle**: Gets the middle of a list
+- **Sort**: Sorts the list
 
 ## Getting Started
 To get started with CrossLink, include the respective files in your project:
