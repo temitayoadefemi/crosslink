@@ -1,5 +1,5 @@
 class ListNode:
-    def __init__(self, key=None, val=None):
+    def __init__(self, key=None, val=0):
         # Initialize a new node with a key, value, and a pointer to the next node
         self.val = val
         self.key = key
@@ -149,3 +149,38 @@ class LinkedList:
 
         # When fast reaches the end, slow will be at the middle
         return slow
+
+
+    def merge(self, a, b):
+        result = None
+        if not a:
+            return b
+        if not b:
+            return a  
+
+        if a.value <= b.value:
+            result = a
+            result.next = self.merge(a.next, b) 
+        else:
+            result = b 
+            result.next = self.merge(a, b.next)
+
+        return result
+
+
+    def merge_sort(self, head):
+        if not head or not head.next:
+            return head
+        
+        middle = self.get_middle(head)
+        next_to_middle = middle.next
+        middle.next = None
+
+        left = self.merge_sort(head)
+        right = self.merge_sort(next_to_middle)
+
+        sorted_list = self.merge(left, right)
+        return sorted_list
+
+
+        
