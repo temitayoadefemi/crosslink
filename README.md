@@ -13,6 +13,7 @@ CrossLink is a versatile library designed to manage and manipulate linked lists 
 - **Reverse**: Reverse the order of nodes in the list.
 - **Split**: Divide the list into two sublists at a specified index.
 - **Middle**: Gets the middle of a list
+- **Sort**: Sorts the list
 
 ### C Implementation
 - **Insert**: Append a node at the end of the list.
