@@ -1,6 +1,8 @@
 #include <stdio.h>     // Standard input/output library (for printf, etc.)
 #include <stdlib.h>    // Standard library (for malloc, free, etc.)
 #include <linked-list-struct.h>
+#include <stdbool.h>
+
 
 // Function to insert a new node into the linked list
 void insert(ListNode *node, LinkedList *linkedlist) {
@@ -337,8 +339,8 @@ ListNode* get_middle(LinkedList *linkedlist) {
 }
 
 
-// Function to merge a linked list
-ListNode* merge(ListNode *a, ListNode *b) {
+// Function to merge two linked lists
+ListNode* merge(ListNode *a, ListNode *b, bool key) {
     // Initialize the result to NULL
     ListNode *result = NULL;
 
@@ -353,25 +355,38 @@ ListNode* merge(ListNode *a, ListNode *b) {
     }
 
     // Compare the head values of both lists
-    if (a->value <= b->value) {
-        // If the head of list a is smaller or equal, it should be the first node
-        result = a;
-        // Recursively sort the rest of list a and all of list b
-        result->next = merge(a->next, b);
-    } else {
-        // If the head of list b is smaller, it should be the first node
-        result = b;
-        // Recursively sort all of list a and the rest of list b
-        result->next = merge(a, b->next);
+    if (key) {
+        if (a->key <= b->key) {
+            // If the head of list a is smaller or equal, it should be the first node
+            result = a;
+            // Recursively sort the rest of list a and all of list b
+            result->next = merge(a->next, b, key);
+        } else {
+            // If the head of list b is smaller, it should be the first node
+            result = b;
+            // Recursively sort all of list a and the rest of list b
+            result->next = merge(a, b->next, key);
+        }
+    } else { // Fix: changed 'else (a->value <= b->value)' to 'else'
+        if (a->value <= b->value) {
+            // If the head of list a is smaller or equal, it should be the first node
+            result = a;
+            // Recursively sort the rest of list a and all of list b
+            result->next = merge(a->next, b, key); // Fix: added 'key' parameter
+        } else {
+            // If the head of list b is smaller, it should be the first node
+            result = b;
+            // Recursively sort all of list a and the rest of list b
+            result->next = merge(a, b->next, key); // Fix: added 'key' parameter
+        }
     }
 
     // Return the head of the merged list
     return result;
 }
 
-
 // Function to sort a linked list
-ListNode* sort(ListNode *head) {
+ListNode* sort(ListNode *head, bool key) {
     // Check if the list is empty or has only one node, in which case it is already sorted
     if (head == NULL || head->next == NULL) {
         return head;
@@ -386,16 +401,15 @@ ListNode* sort(ListNode *head) {
     middle->next = NULL;
 
     // Recursively sort the first half
-    ListNode *left = sort(head);
+    ListNode *left = sort(head, key);
     // Recursively sort the second half
-    ListNode *right = sort(next_to_middle);
+    ListNode *right = sort(next_to_middle, key);
 
     // Merge the two sorted halves
-    ListNode *result = merge(left, right);
+    ListNode *result = merge(left, right, key);
 
     return result;
 }
-
 
 
 
