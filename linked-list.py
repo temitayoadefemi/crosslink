@@ -4,6 +4,7 @@ class ListNode:
         self.val = val
         self.key = key
         self.next = None
+        self.prev = None
 
 
 class LinkedList:
