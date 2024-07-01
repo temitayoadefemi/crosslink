@@ -30,9 +30,8 @@ void insert(ListNode *node, LinkedList *linkedlist, bool singly) {
         }
     }
 
-
 // Function to delete a node from the linked list by key
-void delete(int key, LinkedList *linkedlist) {
+void delete(int key, LinkedList *linkedlist, bool singly) {
     // Check if the linked list is empty
     if (linkedlist->head == NULL) {
         return;  // If the list is empty, there is nothing to delete
@@ -44,6 +43,9 @@ void delete(int key, LinkedList *linkedlist) {
     // Check if the head node is the one to be deleted
     if (current != NULL && current->key == key) {
         linkedlist->head = current->next;  // Adjust the head pointer to the next node
+        if (!singly && current->next != NULL) {
+            current->next->prev = NULL;  // Update the prev pointer of the new head node if doubly linked
+        }
         free(current);  // Free the memory of the deleted node
         return;
     }
@@ -58,6 +60,9 @@ void delete(int key, LinkedList *linkedlist) {
     if (current == NULL) return;
 
     // Remove the node from the list
+    if (singly == false && current->next != NULL) {
+        current->next->prev = previous; // Update the prev pointer of the next node if doubly linked
+    }
     previous->next = current->next;  // Adjust the next pointer of the previous node
     free(current);  // Free the memory of the deleted node
 }
