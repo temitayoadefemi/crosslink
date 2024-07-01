@@ -286,24 +286,33 @@ void edit(int key, int value, LinkedList *linkedlist) {
 }
 
 // Function to reverse a linked list
-void reverse(LinkedList *linkedlist) {
+void reverse(LinkedList *linkedlist, bool singly) {
     // Initialize 'current' to start at the head of the list
     ListNode *current = linkedlist->head;
     // Initialize 'previous' to NULL, which will be the new tail of the list
     ListNode *previous = NULL;
+    // Initialize 'nextnode' to NULL
+    ListNode *nextnode = NULL;
+
     // Traverse through the list until 'current' is NULL
     while (current != NULL) {
         // Store the next node
-        ListNode *nextnode = current->next;
+        nextnode = current->next;
         // Reverse the current node's pointer
         current->next = previous;
+        if (singly == false && previous != NULL) {
+            previous->prev = current;
+        }
         // Move 'previous' and 'current' one step forward
         previous = current;
         current = nextnode;
-}
+    }
 
     // Set the new head of the list to 'previous', which is the old tail
     linkedlist->head = previous;
+    if (!singly && previous != NULL) {
+        previous->prev = NULL;
+    }
 }
 
 // Function to split a linked list into two parts at a given index.
