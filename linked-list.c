@@ -88,7 +88,7 @@ ListNode* search(int key, LinkedList *linkedlist) {
 }
 
 // Function to replace a node of a linked list
-void replace(int key, ListNode *node, LinkedList *linkedlist) {
+void replace(int key, ListNode *node, LinkedList *linkedlist, bool singly) {
     ListNode *current = linkedlist->head;
     ListNode *previous = NULL;
 
@@ -110,6 +110,14 @@ void replace(int key, ListNode *node, LinkedList *linkedlist) {
 
     // Link the new node to the successor of the current node
     node->next = current->next;
+
+    // Handle the doubly linked list case
+    if (!singly) {
+        node->prev = previous;  // Set the new node's prev pointer
+        if (current->next != NULL) {
+            current->next->prev = node;  // Update the next node's prev pointer if it exists
+        }
+    }
 
     // Free the memory of the replaced node
     free(current);
