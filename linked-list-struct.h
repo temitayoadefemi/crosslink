@@ -7,6 +7,8 @@ typedef struct ListNode {
     int key;
     int value;
     struct ListNode *next;
+    struct ListNode *prev;
+
 
 } ListNode;
 
@@ -14,6 +16,3 @@ typedef struct LinkedList {
     struct ListNode *head;
 
 } LinkedList;
-
-
-ListNode* allocateMemorytoNode;

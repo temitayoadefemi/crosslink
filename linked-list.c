@@ -5,24 +5,31 @@
 
 
 // Function to insert a new node into the linked list
-void insert(ListNode *node, LinkedList *linkedlist) {
+void insert(ListNode *node, LinkedList *linkedlist, bool singly) {
+
+
     // Check if the linked list is empty
-    if (linkedlist->head == NULL) {
-        // Set the new node as the head of the list
-        linkedlist->head = node;
-        node->next = NULL;  // Set the next pointer of the new node to NULL
-    }
-    else {
-        // Traverse to the end of the list to find the last node
-        ListNode *current = linkedlist->head;
-        while (current->next != NULL) {
-            current = current->next;
+         if (linkedlist->head == NULL) {
+            // Set the new node as the head of the list
+            linkedlist->head = node;
+            node->next = NULL;  // Set the next pointer of the new node to NULL
         }
-        // Append the new node at the end of the list
-        current->next = node;
-        node->next = NULL;  // Set the next pointer of the new node to NULL
+        else {
+            // Traverse to the end of the list to find the last node
+            ListNode *current = linkedlist->head;
+            while (current->next != NULL) {
+                current = current->next;
+            }
+            // Append the new node at the end of the list
+            current->next = node;
+            if (singly == false) {
+                node->prev = current;
+              // Set the next pointer of the new node to NULL
+            }
+            node->next = NULL;
+        }
     }
-}
+
 
 // Function to delete a node from the linked list by key
 void delete(int key, LinkedList *linkedlist) {
