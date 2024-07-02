@@ -23,6 +23,7 @@ class LinkedList:
             while current.next:
                 current = current.next
             current.next = node
+            node.prev = current
 
 
     def delete(self, key):
