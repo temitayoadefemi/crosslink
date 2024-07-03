@@ -29,19 +29,18 @@ class LinkedList:
     def delete(self, key):
         # Delete a node by its key
         current = self.head
-        previous = None
         while current:
             if current.key == key:
                 # If the node is found, adjust the pointers to remove it from the list
-                if previous:
-                    # Set the next of the previous node to skip the current node
-                    previous.next = current.next
+                if current.prev:  # Use current.prev to refer to the previous node
+                    current.prev.next = current.next
                 else:
                     # If the node to be deleted is the head, adjust the head pointer
                     self.head = current.next
-                break  # Exit after the first match is found and deleted
-            previous = current
-            current = current.next
+                if current.next:  # Check if there is a next node
+                    current.next.prev = current.prev
+            break  # Exit after the first match is found and deleted
+        current = current.next
 
 
 
