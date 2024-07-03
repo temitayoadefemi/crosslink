@@ -61,18 +61,24 @@ class LinkedList:
 
     def replace(self, node, key):
         current = self.head  # Start with the head of the list
-        previous = None  # To keep track of the previous node
 
         while current:
             if current.key == key:
-                if previous is None:  # If the node to be replaced is the head
-                    self.head = node  # Update the head to the new node
-                else:
-                    previous.next = node  # Link the previous node to the new node
-                node.next = current.next  # Link the new node to the next node in the list
-                return  # Assuming we only replace the first occurrence, exit the method
-            previous = current  # Move the previous pointer to the current node
-            current = current.next  # Move to the next node in the list
+                node.prev = current.prev  # Link new node to the previous node
+                node.next = current.next  # Link new node to the next node
+
+            if current.prev is None:  # If the node to be replaced is the head
+                self.head = node
+            else:
+                current.prev.next = node  # Link the previous node to the new node
+
+            if current.next is not None:
+                current.next.prev = node  # Ensure the next node points back to the new node
+
+            return 
+         # Assuming we only replace the first occurrence, exit the method
+        current = current.next  # Move to the next node in the list
+
 
 
 
