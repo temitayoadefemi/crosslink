@@ -12,6 +12,7 @@ class LinkedList:
         # Initialize the LinkedList with the head of the list
         self.head = None
 
+
     def insert(self, node):
         # Insert a new node at the end of the list
         if not self.head:
@@ -78,8 +79,6 @@ class LinkedList:
             return 
          # Assuming we only replace the first occurrence, exit the method
         current = current.next  # Move to the next node in the list
-
-
 
 
     def edit(self, key, value):
