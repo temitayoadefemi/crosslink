@@ -176,7 +176,7 @@ class LinkedList:
         return result
 
 
-    def sort(self, head):
+    def merge_sort(self, head):
         # Base case: if the list is empty or has one node, it is already sorted
         if not head or not head.next:
             return head
@@ -187,10 +187,12 @@ class LinkedList:
         middle.next = None
 
         # Recursively sort both halves
-        left = self.sort(head)
+        left = self.merge_sort(head)
         right = self.sort(next_to_middle)
 
         # Merge the two sorted halves
-        sorted_list = self.merge(left, right)
+        sorted_list = self.merge_sort(left, right)
         return sorted_list
+    
+
         
